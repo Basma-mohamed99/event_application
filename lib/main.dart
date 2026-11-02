@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:event_app/cores/constant/app_style.dart';
 import 'package:event_app/cores/constant/routes_manger.dart';
 import 'package:event_app/provider/theme_provider.dart';
+import 'package:event_app/provider/userProvider.dart';
 import 'package:event_app/screens/forget_password_screen/forget_password_screen.dart';
 import 'package:event_app/screens/home_screen/home_screen.dart';
 import 'package:event_app/screens/login_screen/login_screen.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    ThemeProvider provider=Provider.of<ThemeProvider>(context);;
+    ThemeProvider provider=Provider.of<ThemeProvider>(context);
 
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
@@ -65,7 +66,8 @@ class _MyAppState extends State<MyApp> {
         RoutesManger.login: (_) => const LoginScreen(),
         RoutesManger.register: (_) => const RegisterScreen(),
         RoutesManger.forgetPassword: (_) => const ForgetPasswordScreen(),
-        RoutesManger.home: (_) => const HomeScreen(),
+        RoutesManger.home: (_) => ChangeNotifierProvider(create: (context) => Userprovider(),
+            child: const HomeScreen()),
         RoutesManger.startScreen: (_) => const StartScreen(),
 
       },

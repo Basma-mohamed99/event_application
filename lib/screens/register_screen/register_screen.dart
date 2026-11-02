@@ -10,6 +10,8 @@ import '../../cores/reusable_compoents/cutom_toggle.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../cores/reusable_compoents/dialog_utils.dart';
+import '../../cores/source/remote/firestore_manger.dart';
+import '../../model/UserModel.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -53,114 +55,116 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final RegExp usernameRegex = RegExp(r'^[a-zA-Z][a-zA-Z0-9_]{2,15}$');
 
 
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: fromKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(child: Image.asset(AssetsManger.logo)),
-                CustomField(
-                  controller: user,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "empty data".tr();
-                    }
-                    if (!(usernameRegex.hasMatch(value))) {
-                      return "invalid email".tr();
-                    }
-                    return null;
-                  },
-
-                  hint: "Name".tr(),
-                  prefix: SvgPicture.asset(AssetsManger.user),
-                ),
-                SizedBox(height: 16),
-
-                CustomField(
-                  controller: email,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "empty data".tr();
-                    }
-                    if (!(emailRegex.hasMatch(value))) {
-                      return "invalid email".tr();
-                    }
-                    return null;
-                  },
-
-                  hint: "email".tr(),
-                  prefix: SvgPicture.asset(AssetsManger.email),
-                ),
-                SizedBox(height: 16),
-                CustomField(
-                  controller: password,
-                  suffix: true,
-
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "empty data".tr();
-                    }
-                    if (!(passwordRegex.hasMatch(value))) {
-                      return "invalid email".tr();
-                    }
-                    return null;
-                  },
-
-                  hint: "Password".tr(),
-                  prefix: SvgPicture.asset(AssetsManger.email),
-                ),
-                SizedBox(height: 16),
-                CustomField(
-                  suffix: true,
-                  controller: rePassword,
-
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "empty data".tr();
-                    }
-                    if (rePassword.text!=password.text) {
-                      return "the passwords must be the same".tr();
-                    }
-                    return null;
-                  },
-
-                  hint: "Re Password".tr(),
-                  prefix: SvgPicture.asset(AssetsManger.email),
-                ),
-                SizedBox(height: 16),
-
-                CustomElevatedButton(
-                  text: "Create Account".tr(),
-                  onTap: () {
-                    if (fromKey.currentState!.validate()) {
-                      createAccount();
-                    }
-                  },
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "AlreadyHaveAccount?".tr(),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, RoutesManger.login);
-                      },
-                      child: Text("Login".tr()),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 16),
-
-                Center(child: CustomToggle()),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(child: Image.asset(AssetsManger.logo)),
+                  CustomField(
+                    controller: user,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "empty data".tr();
+                      }
+                      if (!(usernameRegex.hasMatch(value))) {
+                        return "invalid email".tr();
+                      }
+                      return null;
+                    },
+              
+                    hint: "Name".tr(),
+                    prefix: SvgPicture.asset(AssetsManger.user),
+                  ),
+                  SizedBox(height: 16),
+              
+                  CustomField(
+                    controller: email,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "empty data".tr();
+                      }
+                      if (!(emailRegex.hasMatch(value))) {
+                        return "invalid email".tr();
+                      }
+                      return null;
+                    },
+              
+                    hint: "email".tr(),
+                    prefix: SvgPicture.asset(AssetsManger.email),
+                  ),
+                  SizedBox(height: 16),
+                  CustomField(
+                    controller: password,
+                    suffix: true,
+              
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "empty data".tr();
+                      }
+                      if (!(passwordRegex.hasMatch(value))) {
+                        return "invalid email".tr();
+                      }
+                      return null;
+                    },
+              
+                    hint: "Password".tr(),
+                    prefix: SvgPicture.asset(AssetsManger.email),
+                  ),
+                  SizedBox(height: 16),
+                  CustomField(
+                    suffix: true,
+                    controller: rePassword,
+              
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "empty data".tr();
+                      }
+                      if (rePassword.text!=password.text) {
+                        return "the passwords must be the same".tr();
+                      }
+                      return null;
+                    },
+              
+                    hint: "Re Password".tr(),
+                    prefix: SvgPicture.asset(AssetsManger.email),
+                  ),
+                  SizedBox(height: 16),
+              
+                  CustomElevatedButton(
+                    text: "Create Account".tr(),
+                    onTap: () {
+                      if (fromKey.currentState!.validate()) {
+                        createAccount();
+                      }
+                    },
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "AlreadyHaveAccount?".tr(),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, RoutesManger.login);
+                        },
+                        child: Text("Login".tr()),
+                      ),
+                    ],
+                  ),
+              
+                  SizedBox(height: 16),
+              
+                  Center(child: CustomToggle()),
+                ],
+              ),
             ),
           ),
         ),
@@ -175,8 +179,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: password.text,
 
       );
+      await FirestoreManger.addUsers(
+        UserModel(name: user.text, id: credential.user!.uid, email: email.text),
+      );
+
       Navigator.pop(context);
       Navigator.pushNamedAndRemoveUntil(context, RoutesManger.home,(route) => false,);
+
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'weak-password') {
