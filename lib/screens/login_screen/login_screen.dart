@@ -149,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
   signIn() async {
     try {
       DialogUtils.showLoadingDialog(context);
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email.text,
           password: password.text
 
