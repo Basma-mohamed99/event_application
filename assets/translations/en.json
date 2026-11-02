@@ -1,0 +1,24 @@
+{
+    "empty data": "This field is required",
+    "invalid email": "Please enter valid data",
+    "the passwords must be the same": "Passwords do not match",
+    "Name": "Name",
+    "Re Password": "Confirm Password",
+    "Create Account": "Create Account",
+    "AlreadyHaveAccount?": "Already have an account?",
+    "Login": "Login",
+
+  "email": "Email",
+    "forgetPassword": "Forget Password?",
+  "Password": "Password",
+  "login": "Login",
+    "dontHaveAccount": "Don’t Have Account",
+    "createAccount": "Create Account",
+    "or": "Or",
+    "loginWithGoogle": "Login With Google",
+  "Personalize Your Experience": "Personalize Your Experience",
+  "Language": "Language",
+  "Theme": "Theme",
+  "Let’s Start": "Let’s Start",
+  "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.": "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style."
+}

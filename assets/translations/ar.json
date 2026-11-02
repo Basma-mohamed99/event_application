@@ -1,0 +1,35 @@
+{
+
+
+
+
+    "empty data": "هذا الحقل مطلوب",
+    "invalid email": "من فضلك أدخل بيانات صحيحة",
+    "the passwords must be the same": "كلمتا المرور غير متطابقتين",
+    "Name": "الاسم",
+
+    "Re Password": "تأكيد كلمة المرور",
+    "Create Account": "إنشاء حساب",
+    "AlreadyHaveAccount?": "لديك حساب بالفعل؟",
+    "Login": "تسجيل الدخول"
+  ,
+
+
+
+
+  "email": "البريد الإلكتروني",
+    "Password": "كلمه المرور",
+    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "login": "تسجيل الدخول",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "createAccount": "إنشاء حساب",
+    "or": "أو",
+    "loginWithGoogle": "تسجيل الدخول باستخدام جوجل",
+
+
+  "Personalize Your Experience": "خصص تجربتك",
+  "Language": "اللغة",
+  "Theme": "المظهر",
+  "Let’s Start": "هيا نبدأ",
+  "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.": "اختر المظهر واللغة المفضلين لديك للبدء بتجربة مريحة ومخصصة تناسب أسلوبك."
+}
